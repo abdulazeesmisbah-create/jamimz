@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jameela Special</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(to right, #ff9a9e, #fecfef);
+}
+
+/* sections */
+.section { display: none; padding-top: 80px; }
+.active { display: block; }
+
+.name {
+  font-size: 40px;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+button {
+  padding: 12px 25px;
+  margin: 10px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.yes { background: #4CAF50; color: white; }
+.no { background: #f44336; color: white; }
+
+/* 🎁 Gift animation */
+.box {
+  font-size: 90px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.box:hover {
+  transform: scale(1.2);
+}
+
+.open {
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+
+.hidden { display: none; }
+</style>
+</head>
+
+<body>
+
+<!-- TIMER -->
+<div id="timer" class="section active">
+  <h1>Counting down...</h1>
+  <h2 id="countdown"></h2>
+  <button onclick="skip()">Skip</button>
+</div>
+
+<!-- BIRTHDAY -->
+<div id="birthday" class="section">
+  <h1>Happy Birthday</h1>
+  <div class="name">Jameela</div>
+  <button onclick="next1()">Next</button>
+</div>
+
+<!-- QUESTION -->
+<div id="question" class="section">
+  <h2>Are you ready for surprise?</h2>
+  <button class="yes" onclick="yes()">YES</button>
+  <button class="no" onclick="no()">NO</button>
+</div>
+
+<!-- NO PAGE -->
+<div id="noPage" class="section">
+  <h1>How dare you!</h1>
+  <button onclick="back()">Try Again</button>
+</div>
+
+<!-- GIFT -->
+<div id="gift" class="section">
+  <h2>Tap the gift</h2>
+  <div class="box" id="giftBox" onclick="openGift()">🎁</div>
+
+  <div id="giftLinks" class="hidden">
+    <h3>Choose your gift 🎁</h3>
+    <button onclick="open1()">Gift 1 💐</button>
+    <button onclick="open2()">Gift 2 🎶</button>
+  </div>
+</div>
+
+<script>
+
+// 🎯 DATE
+let birthday = new Date("November 8, 2026 00:00:00").getTime();
+
+let timer = setInterval(function() {
+  let now = new Date().getTime();
+  let diff = birthday - now;
+
+  let d = Math.floor(diff/(1000*60*60*24));
+  let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  let m = Math.floor((diff%(1000*60*60))/(1000*60));
+  let s = Math.floor((diff%(1000*60))/1000);
+
+  document.getElementById("countdown").innerHTML =
+    d+"d "+h+"h "+m+"m "+s+"s";
+
+  if(diff<0){
+    clearInterval(timer);
+    show("birthday");
+  }
+},1000);
+
+// skip
+function skip(){ show("birthday"); }
+
+// section switch
+function show(id){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function next1(){ show("question"); }
+
+function yes(){ show("gift"); }
+
+function no(){ show("noPage"); }
+
+function back(){ show("question"); }
+
+// 🎁 gift animation
+function openGift(){
+  let box = document.getElementById("giftBox");
+  box.classList.add("open");
+
+  setTimeout(()=>{
+    box.style.display = "none";
+    document.getElementById("giftLinks").classList.remove("hidden");
+  },500);
+}
+
+// 🌐 YOUR LINKS
+function open1(){
+  window.open("https://digibouquet.vercel.app/bouquet/387d76f1-9f3d-4541-9266-91c2c56d1a0b");
+}
+
+function open2(){
+  window.open("https://www.1happybirthday.com/play_song.php?name=Jameela");
+}
+
+</script>
+
+</body>
+</html>
