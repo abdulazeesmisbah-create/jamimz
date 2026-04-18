@@ -1,166 +1,591 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jameela Special</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 Jameela's Birthday Surprise!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  margin: 0;
-  font-family: Arial;
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── PAGES ─── */
+.page {
+  display: none;
+  position: fixed;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 22px;
+  animation: pageIn 0.7s cubic-bezier(.34,1.56,.64,1) both;
+}
+.page.active { display: flex; }
+@keyframes pageIn {
+  from { opacity: 0; transform: scale(0.88) translateY(30px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ══════════════════════════════
+   PAGE 1 — COUNTDOWN
+══════════════════════════════ */
+#p1 { background: linear-gradient(145deg, #fce4ec 0%, #e3f2fd 50%, #f3e5f5 100%); }
+
+.p1-emoji {
+  font-size: 70px;
+  margin-bottom: 4px;
+  display: inline-block;
+  animation: cakeWiggle 1.8s ease-in-out infinite;
+}
+@keyframes cakeWiggle {
+  0%,100% { transform: rotate(-8deg) scale(1); }
+  50%      { transform: rotate(8deg) scale(1.1); }
+}
+.p1-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 17px;
+  color: #90a4ae;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.timer-card {
+  background: white;
+  border-radius: 28px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 10px 40px rgba(233,30,99,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+  border: 2px solid #fce4ec;
+  width: 100%;
+  max-width: 320px;
+}
+.timer-nums {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+}
+.t-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.t-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(32px, 10vw, 52px);
+  color: #1a1a2e;
+  background: linear-gradient(135deg, #fce4ec, #e3f2fd);
+  border-radius: 14px;
+  width: clamp(56px, 17vw, 70px);
+  height: clamp(56px, 17vw, 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(233,30,99,0.1);
+}
+.t-lbl {
+  font-size: 9px;
+  font-weight: 800;
+  color: #b0bec5;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+.t-sep {
+  font-family: 'Fredoka One', cursive;
+  font-size: 30px;
+  color: #e91e8c;
+  margin-bottom: 18px;
+  opacity: 0.5;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.p1-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(17px, 5vw, 24px);
+  margin-bottom: 22px;
   text-align: center;
-  background: linear-gradient(to right, #ff9a9e, #fecfef);
+}
+.p1-name b { color: #e91e8c; }
+.p1-name span { color: #42a5f5; }
+
+/* ══════════════════════════════
+   PAGE 2 — HAPPY BIRTHDAY
+══════════════════════════════ */
+#p2 { background: linear-gradient(145deg, #fff8e1 0%, #fce4ec 60%, #f8bbd9 100%); }
+
+.hb-top {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(34px, 12vw, 60px);
+  color: #64b5f6;
+  letter-spacing: 5px;
+  line-height: 1.05;
+  text-align: center;
+  text-shadow: 3px 3px 0px rgba(100,181,246,0.2);
+}
+.hb-bot {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(34px, 12vw, 60px);
+  color: #f06292;
+  letter-spacing: 5px;
+  line-height: 1.05;
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 3px 3px 0px rgba(240,98,146,0.2);
+}
+.bear-group {
+  font-size: 56px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+.bear-group span { display: inline-block; animation: bearBounce 1.4s ease-in-out infinite; }
+.bear-group span:nth-child(2) { animation-delay: 0.22s; }
+.bear-group span:nth-child(3) { animation-delay: 0.44s; }
+@keyframes bearBounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.cake-gifts { font-size: 34px; margin-bottom: 12px; }
+.hb-name-tag {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(20px, 6vw, 28px);
+  color: #9c27b0;
+  background: white;
+  padding: 9px 26px;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(156,39,176,0.15);
+  margin-bottom: 24px;
+  border: 2px solid #f3e5f5;
 }
 
-/* sections */
-.section { display: none; padding-top: 80px; }
-.active { display: block; }
+/* ══════════════════════════════
+   PAGE 3 — ARE YOU READY?
+══════════════════════════════ */
+#p3 { background: linear-gradient(145deg, #e8f5e9 0%, #e3f2fd 100%); }
 
-.name {
-  font-size: 40px;
-  color: #e91e63;
-  font-weight: bold;
+.ready-q {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(22px, 7vw, 34px);
+  color: #42a5f5;
+  text-align: center;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+.bear-surprise {
+  font-size: 110px;
+  display: inline-block;
+  animation: surpriseBear 2s ease-in-out infinite;
+  margin-bottom: 26px;
+}
+@keyframes surpriseBear {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50%      { transform: translateY(-16px) rotate(4deg); }
+}
+.btn-row { display: flex; gap: 18px; }
+
+/* ══════════════════════════════
+   PAGE 4 — HOW DARE YOU
+══════════════════════════════ */
+#p4 { background: linear-gradient(145deg, #fff3e0 0%, #fce4ec 100%); }
+
+.how-dare {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(30px, 10vw, 50px);
+  color: #e53935;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.dare-sub {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ef9a9a;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.angry-bunny {
+  font-size: 100px;
+  display: inline-block;
+  animation: angryWobble 0.7s ease-in-out infinite;
+  margin-bottom: 24px;
+}
+@keyframes angryWobble {
+  0%,100% { transform: rotate(-6deg) scale(1); }
+  50%      { transform: rotate(6deg) scale(1.06); }
 }
 
-button {
-  padding: 12px 25px;
-  margin: 10px;
+/* ══════════════════════════════
+   PAGE 5 — GIFTS
+══════════════════════════════ */
+#p5 { background: linear-gradient(145deg, #f3e5f5 0%, #e8eaf6 50%, #fce4ec 100%); }
+
+.gift-header {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(20px, 6.5vw, 30px);
+  color: #7b1fa2;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.gift-sub {
+  font-size: 13px;
+  font-weight: 700;
+  color: #b39ddb;
+  text-align: center;
+  margin-bottom: 26px;
+  letter-spacing: 0.3px;
+}
+.gifts-wrap { display: flex; gap: 22px; justify-content: center; }
+
+.gift-box {
+  width: 138px;
+  height: 158px;
+  background: white;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+.gift-box:hover {
+  transform: translateY(-8px) scale(1.06);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.18);
+}
+.gift-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+.gift-box.g1::before { background: linear-gradient(135deg, #ff6b9d, #ff8c69); }
+.gift-box.g2::before { background: linear-gradient(135deg, #a78bfa, #60a5fa); }
+.gift-box.g1 { border-color: #ffd0e0; }
+.gift-box.g2 { border-color: #ddd6fe; }
+
+.g-icon {
+  font-size: 54px;
+  display: inline-block;
+  animation: giftPop 2s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+.gift-box.g2 .g-icon { animation-delay: 0.5s; }
+@keyframes giftPop {
+  0%,100% { transform: scale(1) rotate(-4deg); }
+  50%      { transform: scale(1.12) rotate(4deg); }
+}
+.g-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 8px;
+  line-height: 1.3;
+}
+.gift-box.g1 .g-name { color: #e91e8c; }
+.gift-box.g2 .g-name { color: #7c3aed; }
+.g-tap {
+  font-size: 10px;
+  font-weight: 800;
+  color: #ccc;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.gift-footer {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(14px, 4.5vw, 20px);
+  color: #e91e8c;
+  text-align: center;
+  margin-top: 22px;
+  animation: heartPulse 1.4s ease-in-out infinite alternate;
+}
+@keyframes heartPulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* ─── SHARED BUTTONS ─── */
+.btn {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
   border: none;
-  border-radius: 20px;
-  font-size: 16px;
+  border-radius: 50px;
+  padding: 14px 36px;
   cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  outline: none;
+}
+.btn:hover { transform: translateY(-3px) scale(1.05); }
+.btn:active { transform: scale(0.97); }
+.btn-blue   { background: linear-gradient(135deg,#42a5f5,#1976d2); color: white; }
+.btn-green  { background: linear-gradient(135deg,#66bb6a,#388e3c); color: white; }
+.btn-red    { background: linear-gradient(135deg,#ef5350,#c62828); color: white; }
+.btn-orange { background: linear-gradient(135deg,#ffa726,#e65100); color: white; }
+
+/* ─── FLOATERS ─── */
+#floaters { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.floater {
+  position: absolute;
+  bottom: -50px;
+  font-size: var(--s, 20px);
+  animation: floatUp var(--d, 7s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+@keyframes floatUp {
+  0%   { bottom: -50px; opacity: 0; transform: translateX(0) rotate(0deg); }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.7; }
+  100% { bottom: 110vh; opacity: 0; transform: translateX(var(--drift, 30px)) rotate(360deg); }
 }
 
-.yes { background: #4CAF50; color: white; }
-.no { background: #f44336; color: white; }
+/* ─── CONFETTI ─── */
+#confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
 
-/* 🎁 Gift animation */
-.box {
-  font-size: 90px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.box:hover {
-  transform: scale(1.2);
-}
-
-.open {
-  animation: pop 0.5s ease;
-}
-
-@keyframes pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.5) rotate(10deg); }
-  100% { transform: scale(1); }
-}
-
-.hidden { display: none; }
+/* all page children above bg */
+.page > * { position: relative; z-index: 2; }
 </style>
 </head>
-
 <body>
 
-<!-- TIMER -->
-<div id="timer" class="section active">
-  <h1>Counting down...</h1>
-  <h2 id="countdown"></h2>
-  <button onclick="skip()">Skip</button>
+<div id="floaters"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ══ PAGE 1: COUNTDOWN ══ -->
+<div class="page active" id="p1">
+  <div class="p1-emoji">🎂</div>
+  <div class="p1-label">✨ COUNTING DOWN TO ✨</div>
+  <div class="timer-card">
+    <div class="timer-nums">
+      <div class="t-block">
+        <div class="t-num" id="t-d">00</div>
+        <div class="t-lbl">Days</div>
+      </div>
+      <div class="t-sep">:</div>
+      <div class="t-block">
+        <div class="t-num" id="t-h">00</div>
+        <div class="t-lbl">Hours</div>
+      </div>
+      <div class="t-sep">:</div>
+      <div class="t-block">
+        <div class="t-num" id="t-m">00</div>
+        <div class="t-lbl">Mins</div>
+      </div>
+      <div class="t-sep">:</div>
+      <div class="t-block">
+        <div class="t-num" id="t-s">00</div>
+        <div class="t-lbl">Secs</div>
+      </div>
+    </div>
+  </div>
+  <div class="p1-name"><b>🌸 JAMEELA's</b> <span>Special Day 🎉</span></div>
+  <button class="btn btn-blue" onclick="goTo('p2')">NEXT ➜</button>
 </div>
 
-<!-- BIRTHDAY -->
-<div id="birthday" class="section">
-  <h1>Happy Birthday</h1>
-  <div class="name">Jameela</div>
-  <button onclick="next1()">Next</button>
+<!-- ══ PAGE 2: HAPPY BIRTHDAY ══ -->
+<div class="page" id="p2">
+  <div class="hb-top">HAPPY</div>
+  <div class="hb-bot">BIRTHDAY</div>
+  <div class="bear-group">
+    <span>🐻</span><span>🎂</span><span>🐨</span>
+  </div>
+  <div class="cake-gifts">🎁 🎀 🎁</div>
+  <div class="hb-name-tag">🌸 Jameela 🌸</div>
+  <button class="btn btn-blue" onclick="goTo('p3')">NEXT ➜</button>
 </div>
 
-<!-- QUESTION -->
-<div id="question" class="section">
-  <h2>Are you ready for surprise?</h2>
-  <button class="yes" onclick="yes()">YES</button>
-  <button class="no" onclick="no()">NO</button>
-</div>
-
-<!-- NO PAGE -->
-<div id="noPage" class="section">
-  <h1>How dare you!</h1>
-  <button onclick="back()">Try Again</button>
-</div>
-
-<!-- GIFT -->
-<div id="gift" class="section">
-  <h2>Tap the gift</h2>
-  <div class="box" id="giftBox" onclick="openGift()">🎁</div>
-
-  <div id="giftLinks" class="hidden">
-    <h3>Choose your gift 🎁</h3>
-    <button onclick="open1()">Gift 1 💐</button>
-    <button onclick="open2()">Gift 2 🎶</button>
+<!-- ══ PAGE 3: ARE YOU READY? ══ -->
+<div class="page" id="p3">
+  <div class="ready-q">Are you ready<br>for a surprise? 🎊</div>
+  <div class="bear-surprise">🧸</div>
+  <div class="btn-row">
+    <button class="btn btn-green" onclick="goTo('p5'); startConfetti();">YES 🎉</button>
+    <button class="btn btn-red"   onclick="goTo('p4')">NO 😶</button>
   </div>
 </div>
 
+<!-- ══ PAGE 4: HOW DARE YOU ══ -->
+<div class="page" id="p4">
+  <div class="how-dare">HOW DARE YOU! 😤</div>
+  <div class="dare-sub">You better press YES! 😠</div>
+  <div class="angry-bunny">🐰</div>
+  <button class="btn btn-orange" onclick="goTo('p3')">TRY AGAIN 🔄</button>
+</div>
+
+<!-- ══ PAGE 5: GIFT BOXES ══ -->
+<div class="page" id="p5">
+  <div class="gift-header">🎁 Your Surprise Gifts! 🎁</div>
+  <div class="gift-sub">Tap a gift box to open your surprise ✨</div>
+  <div class="gifts-wrap">
+
+    <a class="gift-box g1"
+       href="https://digibouquet.vercel.app/bouquet/7a665ca8-b019-45f2-adae-a08722503922"
+       target="_blank" rel="noopener"
+       onclick="popGift(this)">
+      <div class="g-icon">💐</div>
+      <div class="g-name">Digital<br>Bouquet</div>
+      <div class="g-tap">Tap to open</div>
+    </a>
+
+    <a class="gift-box g2"
+       href="https://www.1happybirthday.com/play_song.php?name=Jameela"
+       target="_blank" rel="noopener"
+       onclick="popGift(this)">
+      <div class="g-icon">🎵</div>
+      <div class="g-name">Birthday<br>Song</div>
+      <div class="g-tap">Tap to open</div>
+    </a>
+
+  </div>
+  <div class="gift-footer">💖 Happy Birthday Jameela! 💖</div>
+</div>
+
 <script>
-
-// 🎯 DATE
-let birthday = new Date("November 8, 2026 00:00:00").getTime();
-
-let timer = setInterval(function() {
-  let now = new Date().getTime();
-  let diff = birthday - now;
-
-  let d = Math.floor(diff/(1000*60*60*24));
-  let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  let m = Math.floor((diff%(1000*60*60))/(1000*60));
-  let s = Math.floor((diff%(1000*60))/1000);
-
-  document.getElementById("countdown").innerHTML =
-    d+"d "+h+"h "+m+"m "+s+"s";
-
-  if(diff<0){
-    clearInterval(timer);
-    show("birthday");
+// ── COUNTDOWN to Nov 8 ──
+function getTarget() {
+  const now = new Date();
+  let y = now.getFullYear();
+  let t = new Date(y, 10, 8, 0, 0, 0); // month 10 = November
+  if (now >= t) t = new Date(y + 1, 10, 8, 0, 0, 0);
+  return t;
+}
+function pad(n) { return String(n).padStart(2, '0'); }
+function updateTimer() {
+  const diff = getTarget() - new Date();
+  if (diff <= 0) {
+    ['t-d','t-h','t-m','t-s'].forEach(id => document.getElementById(id).textContent = '00');
+    return;
   }
-},1000);
+  document.getElementById('t-d').textContent = pad(Math.floor(diff / 86400000));
+  document.getElementById('t-h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+  document.getElementById('t-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
+  document.getElementById('t-s').textContent = pad(Math.floor((diff % 60000) / 1000));
+}
+updateTimer();
+setInterval(updateTimer, 1000);
 
-// skip
-function skip(){ show("birthday"); }
-
-// section switch
-function show(id){
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+// ── PAGE NAV ──
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.style.animation = 'none';
+  el.offsetHeight;
+  el.style.animation = '';
+  if (id === 'p4') {
+    const h = document.querySelector('.how-dare');
+    h.style.animation = 'none'; h.offsetHeight;
+    h.style.animation = 'shakeTitle 0.5s ease';
+  }
 }
 
-function next1(){ show("question"); }
+// ── FLOATING EMOJIS ──
+(function() {
+  const emojis = ['🌸','💖','✨','🎀','🌟','💝','🎊','🍭','🌈','💕','🎈','🦋','⭐','🌺','💫'];
+  const wrap = document.getElementById('floaters');
+  for (let i = 0; i < 20; i++) {
+    const f = document.createElement('div');
+    f.className = 'floater';
+    f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    const s = (Math.random() * 18 + 14).toFixed(0);
+    const d = (Math.random() * 6 + 6).toFixed(1);
+    const delay = -(Math.random() * 10).toFixed(1);
+    const drift = ((Math.random() - 0.5) * 120).toFixed(0);
+    const left  = (Math.random() * 100).toFixed(1);
+    f.style.cssText = `--s:${s}px;--d:${d}s;--delay:${delay}s;--drift:${drift}px;left:${left}%;`;
+    wrap.appendChild(f);
+  }
+})();
 
-function yes(){ show("gift"); }
+// ── CONFETTI ──
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let pieces = [];
 
-function no(){ show("noPage"); }
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
 
-function back(){ show("question"); }
+const COLS = ['#ff6b9d','#ffd700','#42a5f5','#66bb6a','#f06292','#a78bfa','#ff8a65','#fff176','#80cbc4'];
 
-// 🎁 gift animation
-function openGift(){
-  let box = document.getElementById("giftBox");
-  box.classList.add("open");
-
-  setTimeout(()=>{
-    box.style.display = "none";
-    document.getElementById("giftLinks").classList.remove("hidden");
-  },500);
+function startConfetti() {
+  pieces = [];
+  for (let i = 0; i < 160; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: -(Math.random() * canvas.height * 0.5),
+      w: Math.random() * 10 + 5,
+      h: Math.random() * 5 + 3,
+      color: COLS[Math.floor(Math.random() * COLS.length)],
+      rot: Math.random() * Math.PI * 2,
+      rs: (Math.random() - 0.5) * 0.14,
+      vy: Math.random() * 2.5 + 2,
+      vx: (Math.random() - 0.5) * 1.8,
+      alpha: 1
+    });
+  }
+  requestAnimationFrame(drawConfetti);
 }
 
-// 🌐 YOUR LINKS
-function open1(){
-  window.open("https://digibouquet.vercel.app/bouquet/387d76f1-9f3d-4541-9266-91c2c56d1a0b");
+function drawConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let alive = false;
+  pieces.forEach(p => {
+    p.y += p.vy; p.x += p.vx; p.rot += p.rs;
+    if (p.y > canvas.height * 0.75) p.alpha -= 0.015;
+    if (p.alpha <= 0) return;
+    alive = true;
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, p.alpha);
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.w / 2, p.h / 2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  });
+  if (alive) requestAnimationFrame(drawConfetti);
+  else ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function open2(){
-  window.open("https://www.1happybirthday.com/play_song.php?name=Jameela");
+function popGift(el) {
+  el.style.transform = 'scale(0.92)';
+  setTimeout(() => { el.style.transform = ''; }, 200);
+  startConfetti();
 }
 
+// Shake animation for how dare you
+const style = document.createElement('style');
+style.textContent = `@keyframes shakeTitle {
+  0%,100%{ transform:translateX(0); }
+  20%    { transform:translateX(-12px); }
+  40%    { transform:translateX(12px); }
+  60%    { transform:translateX(-8px); }
+  80%    { transform:translateX(8px); }
+}`;
+document.head.appendChild(style);
 </script>
-
 </body>
 </html>
