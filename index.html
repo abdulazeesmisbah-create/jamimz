@@ -120,11 +120,11 @@ body {
 /* ══════════════════════════════
    PAGE 2 — HAPPY BIRTHDAY
 ══════════════════════════════ */
-#p2 { background: linear-gradient(145deg, #fff8e1 0%, #fce4ec 60%, #f8bbd9 100%); }
+#p2 { background: linear-gradient(145deg, #fff0f8 0%, #fce4ec 50%, #f8e1ff 100%); }
 
 .hb-top {
   font-family: 'Fredoka One', cursive;
-  font-size: clamp(34px, 12vw, 60px);
+  font-size: clamp(30px, 10vw, 52px);
   color: #64b5f6;
   letter-spacing: 5px;
   line-height: 1.05;
@@ -133,39 +133,220 @@ body {
 }
 .hb-bot {
   font-family: 'Fredoka One', cursive;
-  font-size: clamp(34px, 12vw, 60px);
+  font-size: clamp(30px, 10vw, 52px);
   color: #f06292;
   letter-spacing: 5px;
   line-height: 1.05;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-shadow: 3px 3px 0px rgba(240,98,146,0.2);
 }
-.bear-group {
-  font-size: 56px;
-  margin-bottom: 4px;
-  display: flex;
-  justify-content: center;
-  gap: 2px;
-}
-.bear-group span { display: inline-block; animation: bearBounce 1.4s ease-in-out infinite; }
-.bear-group span:nth-child(2) { animation-delay: 0.22s; }
-.bear-group span:nth-child(3) { animation-delay: 0.44s; }
-@keyframes bearBounce {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-14px); }
-}
-.cake-gifts { font-size: 34px; margin-bottom: 12px; }
 .hb-name-tag {
   font-family: 'Fredoka One', cursive;
-  font-size: clamp(20px, 6vw, 28px);
+  font-size: clamp(16px, 5vw, 22px);
   color: #9c27b0;
   background: white;
-  padding: 9px 26px;
+  padding: 7px 22px;
   border-radius: 50px;
   box-shadow: 0 4px 16px rgba(156,39,176,0.15);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   border: 2px solid #f3e5f5;
+}
+
+/* ── CSS CAKE ── */
+.cake-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 14px;
+  animation: cakeFloat 3s ease-in-out infinite;
+}
+@keyframes cakeFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Candles row */
+.candles-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 3;
+}
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flame {
+  width: 10px;
+  height: 16px;
+  background: radial-gradient(ellipse at 50% 80%, #fff176 0%, #ffb300 40%, #ff6d00 80%, transparent 100%);
+  border-radius: 50% 50% 30% 30%;
+  position: relative;
+  animation: flicker 0.6s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px 3px rgba(255,180,0,0.5), 0 0 16px 6px rgba(255,120,0,0.25);
+  margin-bottom: 1px;
+}
+@keyframes flicker {
+  0%   { transform: scaleX(1) scaleY(1) rotate(-2deg); }
+  33%  { transform: scaleX(0.85) scaleY(1.1) rotate(2deg); }
+  66%  { transform: scaleX(1.1) scaleY(0.92) rotate(-1deg); }
+  100% { transform: scaleX(0.9) scaleY(1.05) rotate(3deg); }
+}
+.candle:nth-child(2) .flame { animation-delay: 0.15s; }
+.candle:nth-child(3) .flame { animation-delay: 0.3s; }
+.candle:nth-child(4) .flame { animation-delay: 0.08s; }
+.candle:nth-child(5) .flame { animation-delay: 0.22s; }
+
+.candle-body {
+  width: 10px;
+  height: 30px;
+  border-radius: 3px 3px 2px 2px;
+}
+.candle:nth-child(1) .candle-body { background: linear-gradient(180deg,#ff6b9d,#ff8fab); }
+.candle:nth-child(2) .candle-body { background: linear-gradient(180deg,#a78bfa,#c4b5fd); }
+.candle:nth-child(3) .candle-body { background: linear-gradient(180deg,#34d399,#6ee7b7); }
+.candle:nth-child(4) .candle-body { background: linear-gradient(180deg,#fbbf24,#fde68a); }
+.candle:nth-child(5) .candle-body { background: linear-gradient(180deg,#60a5fa,#93c5fd); }
+
+/* Top tier */
+.cake-tier-top {
+  width: 120px;
+  height: 44px;
+  background: linear-gradient(180deg, #ffb7d5 0%, #ff85b3 100%);
+  border-radius: 12px 12px 0 0;
+  position: relative;
+  border: 2px solid #ff69a0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cake-tier-top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 12px;
+  background: white;
+  border-radius: 10px 10px 40% 40%;
+  box-shadow: 0 3px 0 rgba(255,150,200,0.4);
+}
+/* Dots decoration */
+.cake-tier-top::after {
+  content: '· · · · · ·';
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 6px;
+}
+
+/* Middle tier */
+.cake-tier-mid {
+  width: 160px;
+  height: 56px;
+  background: linear-gradient(180deg, #c4b5fd 0%, #a78bfa 100%);
+  position: relative;
+  border-left: 2px solid #9061ea;
+  border-right: 2px solid #9061ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.cake-tier-mid::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -2px; right: -2px;
+  height: 14px;
+  background: white;
+  border-radius: 0 0 40% 40%;
+  box-shadow: 0 4px 0 rgba(160,120,255,0.3);
+}
+/* "21" text on cake */
+.cake-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: 26px;
+  color: white;
+  text-shadow: 2px 2px 0 rgba(140,80,220,0.5), 0 0 10px rgba(255,255,255,0.4);
+  z-index: 2;
+  position: relative;
+  top: 4px;
+  letter-spacing: 3px;
+}
+/* Drips on middle tier */
+.drips {
+  position: absolute;
+  top: 13px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+.drip {
+  width: 10px;
+  background: white;
+  border-radius: 0 0 6px 6px;
+  opacity: 0.85;
+}
+
+/* Bottom tier */
+.cake-tier-bot {
+  width: 210px;
+  height: 64px;
+  background: linear-gradient(180deg, #fde68a 0%, #fbbf24 100%);
+  border-radius: 0 0 16px 16px;
+  position: relative;
+  border: 2px solid #f59e0b;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cake-tier-bot::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -2px; right: -2px;
+  height: 16px;
+  background: white;
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 4px 0 rgba(245,158,11,0.3);
+}
+/* Stripe pattern on bottom */
+.cake-tier-bot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 16px,
+    rgba(255,255,255,0.25) 16px,
+    rgba(255,255,255,0.25) 22px
+  );
+}
+/* Stars on bottom tier */
+.cake-stars {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  gap: 12px;
+  z-index: 2;
+}
+.cake-stars span { font-size: 16px; }
+
+/* Plate */
+.cake-plate {
+  width: 230px;
+  height: 14px;
+  background: linear-gradient(180deg, #f9a8d4, #f472b6);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(244,114,182,0.4);
+  margin-top: -2px;
 }
 
 /* ══════════════════════════════
@@ -323,6 +504,311 @@ body {
   to   { transform: scale(1.06); }
 }
 
+/* ══════════════════════════════
+   PAGE CAKE — BLOW CANDLES
+══════════════════════════════ */
+#pcake { background: linear-gradient(145deg, #fff0fb 0%, #e8eeff 50%, #fffbe6 100%); }
+
+.cake-page-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(22px, 7vw, 32px);
+  color: #e91e8c;
+  margin-bottom: 4px;
+  text-align: center;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+@keyframes titleGlow {
+  from { text-shadow: 0 0 8px rgba(233,30,140,0.3); }
+  to   { text-shadow: 0 0 20px rgba(233,30,140,0.7), 0 0 40px rgba(233,30,140,0.3); }
+}
+
+/* "21" badge floating above cake */
+.age-badge {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(52px, 16vw, 80px);
+  line-height: 1;
+  background: linear-gradient(135deg, #f06292, #ce93d8, #90caf9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 3px 6px rgba(240,98,146,0.35));
+  margin-bottom: 2px;
+  animation: ageBounce 2.5s ease-in-out infinite;
+}
+@keyframes ageBounce {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-8px) scale(1.04); }
+}
+
+/* ── BIG CAKE ── */
+.big-cake-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Candles */
+.big-candles-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  z-index: 5;
+  position: relative;
+}
+.big-candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.big-candle-body {
+  width: 13px;
+  height: 36px;
+  border-radius: 4px 4px 3px 3px;
+  box-shadow: inset -2px 0 4px rgba(0,0,0,0.1);
+}
+
+/* Flame */
+.big-flame {
+  width: 16px;
+  height: 22px;
+  position: relative;
+  margin-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.big-flame .flame-inner {
+  width: 16px;
+  height: 22px;
+  background: radial-gradient(ellipse at 50% 85%, #fff9c4 0%, #ffca28 30%, #ff8f00 65%, #e64a19 90%, transparent 100%);
+  border-radius: 50% 50% 30% 30%;
+  animation: bigFlicker 0.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 10px 4px rgba(255,180,0,0.55), 0 0 22px 8px rgba(255,100,0,0.2);
+}
+@keyframes bigFlicker {
+  0%   { transform: scaleX(1)    scaleY(1)    rotate(-3deg); }
+  33%  { transform: scaleX(0.82) scaleY(1.12) rotate( 3deg); }
+  66%  { transform: scaleX(1.1)  scaleY(0.9)  rotate(-2deg); }
+  100% { transform: scaleX(0.88) scaleY(1.08) rotate( 4deg); }
+}
+.big-candle:nth-child(2) .flame-inner { animation-delay:.12s; }
+.big-candle:nth-child(3) .flame-inner { animation-delay:.25s; }
+.big-candle:nth-child(4) .flame-inner { animation-delay:.08s; }
+.big-candle:nth-child(5) .flame-inner { animation-delay:.38s; }
+
+/* Smoke puff (hidden until blown) */
+.smoke-puff {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(180,180,180,0.7);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Flame blown out */
+.big-flame.blown .flame-inner {
+  animation: blowOut 0.5s ease-out forwards !important;
+}
+@keyframes blowOut {
+  0%   { transform: scaleX(2.2) scaleY(0.3) rotate(25deg); opacity: 1; }
+  40%  { transform: scaleX(0.4) scaleY(1.6) rotate(-10deg); opacity: 0.7; }
+  100% { transform: scaleX(0) scaleY(0); opacity: 0; }
+}
+.smoke-puff.rising {
+  animation: smokeRise 1.4s ease-out forwards;
+}
+@keyframes smokeRise {
+  0%   { opacity: 0.8; transform: translateX(-50%) translateY(0) scale(1); }
+  30%  { opacity: 0.6; transform: translateX(-60%) translateY(-14px) scale(1.4); }
+  60%  { opacity: 0.3; transform: translateX(-40%) translateY(-28px) scale(2); }
+  100% { opacity: 0;   transform: translateX(-55%) translateY(-46px) scale(2.8); }
+}
+
+/* Wind sweep animation */
+.wind-sweep {
+  position: absolute;
+  top: 50%; left: -100%;
+  width: 100%; height: 60px;
+  background: linear-gradient(90deg, transparent, rgba(200,230,255,0.5), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 20;
+}
+.wind-sweep.go {
+  animation: windGo 0.6s ease-out forwards;
+}
+@keyframes windGo {
+  from { left: -100%; opacity: 1; }
+  to   { left: 110%; opacity: 0; }
+}
+
+/* Cake tiers */
+.bc-top {
+  width: 140px;
+  height: 52px;
+  background: linear-gradient(180deg, #ffc1dc 0%, #ff85b3 100%);
+  border-radius: 12px 12px 0 0;
+  border: 2px solid #ff5fa0;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.bc-top-frosting {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 16px;
+  background: white;
+  border-radius: 10px 10px 50% 50%;
+  box-shadow: 0 4px 0 rgba(255,150,200,0.35);
+}
+.bc-dots {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.bc-mid {
+  width: 190px;
+  height: 62px;
+  background: linear-gradient(180deg, #c084fc 0%, #a855f7 100%);
+  border-left: 2px solid #9333ea;
+  border-right: 2px solid #9333ea;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.bc-mid-frosting {
+  position: absolute;
+  top: 0; left: -2px; right: -2px;
+  height: 16px;
+  background: white;
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 4px 0 rgba(160,85,247,0.3);
+}
+.bc-drips-mid, .bc-drips-bot {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+.bc-drip {
+  position: absolute;
+  top: 12px;
+  width: 9px;
+  background: white;
+  border-radius: 0 0 6px 6px;
+  opacity: 0.88;
+}
+.bc-hearts {
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+  top: 6px;
+  letter-spacing: 4px;
+}
+
+.bc-bot {
+  width: 250px;
+  height: 70px;
+  background: linear-gradient(180deg, #fde68a 0%, #f59e0b 100%);
+  border-radius: 0 0 20px 20px;
+  border: 2px solid #d97706;
+  border-top: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.bc-bot-frosting {
+  position: absolute;
+  top: 0; left: -2px; right: -2px;
+  height: 18px;
+  background: white;
+  border-radius: 0 0 60% 60%;
+  box-shadow: 0 5px 0 rgba(245,158,11,0.25);
+}
+.bc-bot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0, transparent 18px,
+    rgba(255,255,255,0.22) 18px, rgba(255,255,255,0.22) 26px
+  );
+}
+.bc-bot-deco {
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+  letter-spacing: 3px;
+  margin-top: 10px;
+}
+
+.bc-plate {
+  width: 274px;
+  height: 14px;
+  background: linear-gradient(180deg, #fbcfe8, #ec4899);
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(236,72,153,0.35);
+  margin-top: -2px;
+}
+
+/* Blow button */
+.blow-hint {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c084fc;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+.blow-btn {
+  background: linear-gradient(135deg, #f43f5e, #ec4899, #a855f7);
+  color: white;
+  font-size: 22px;
+  padding: 15px 44px;
+  border-radius: 50px;
+  box-shadow: 0 8px 28px rgba(236,72,153,0.45);
+  animation: blowPulse 1.6s ease-in-out infinite alternate;
+  letter-spacing: 1px;
+}
+@keyframes blowPulse {
+  from { box-shadow: 0 8px 28px rgba(236,72,153,0.45); transform: scale(1); }
+  to   { box-shadow: 0 12px 36px rgba(236,72,153,0.7); transform: scale(1.04); }
+}
+.blow-btn:disabled {
+  background: linear-gradient(135deg,#9ca3af,#6b7280);
+  animation: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.all-blown-msg {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(20px,6vw,28px);
+  color: #a855f7;
+  text-align: center;
+  margin-top: 4px;
+  animation: popIn 0.5s cubic-bezier(.34,1.56,.64,1) both;
+  display: none;
+}
+@keyframes popIn {
+  from { opacity:0; transform:scale(0.6); }
+  to   { opacity:1; transform:scale(1); }
+}
+
 /* ─── SHARED BUTTONS ─── */
 .btn {
   font-family: 'Fredoka One', cursive;
@@ -407,12 +893,127 @@ body {
 <div class="page" id="p2">
   <div class="hb-top">HAPPY</div>
   <div class="hb-bot">BIRTHDAY</div>
-  <div class="bear-group">
-    <span>🐻</span><span>🎂</span><span>🐨</span>
+
+  <!-- CSS Cake -->
+  <div class="cake-scene">
+    <!-- Candles -->
+    <div class="candles-row">
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+    </div>
+    <!-- Top tier -->
+    <div class="cake-tier-top"></div>
+    <!-- Middle tier -->
+    <div class="cake-tier-mid">
+      <div class="drips">
+        <div class="drip" style="height:18px"></div>
+        <div class="drip" style="height:12px"></div>
+        <div class="drip" style="height:20px"></div>
+        <div class="drip" style="height:10px"></div>
+        <div class="drip" style="height:16px"></div>
+        <div class="drip" style="height:14px"></div>
+        <div class="drip" style="height:22px"></div>
+        <div class="drip" style="height:10px"></div>
+      </div>
+      <div class="cake-num">21</div>
+    </div>
+    <!-- Bottom tier -->
+    <div class="cake-tier-bot">
+      <div class="cake-stars">
+        <span>⭐</span><span>🌸</span><span>⭐</span><span>🌸</span><span>⭐</span>
+      </div>
+    </div>
+    <!-- Plate -->
+    <div class="cake-plate"></div>
   </div>
-  <div class="cake-gifts">🎁 🎀 🎁</div>
+
   <div class="hb-name-tag">🌸 Jameela 🌸</div>
-  <button class="btn btn-blue" onclick="goTo('p3')">NEXT ➜</button>
+  <button class="btn btn-blue" onclick="goTo('pcake')">NEXT ➜</button>
+</div>
+
+<!-- ══ PAGE CAKE: BLOW THE CANDLES ══ -->
+<div class="page" id="pcake">
+  <div class="cake-page-title">Make a Wish! 🌟</div>
+  <div class="age-badge">21</div>
+
+  <div class="big-cake-scene" id="bigCakeScene">
+    <!-- Candles on top -->
+    <div class="big-candles-row" id="candlesRow">
+      <div class="big-candle" id="c1">
+        <div class="big-flame" id="f1"><div class="flame-inner"></div></div>
+        <div class="smoke-puff" id="s1"></div>
+        <div class="big-candle-body" style="background:linear-gradient(180deg,#ff6b9d,#ffb3cb)"></div>
+      </div>
+      <div class="big-candle" id="c2">
+        <div class="big-flame" id="f2"><div class="flame-inner"></div></div>
+        <div class="smoke-puff" id="s2"></div>
+        <div class="big-candle-body" style="background:linear-gradient(180deg,#a78bfa,#d8b4fe)"></div>
+      </div>
+      <div class="big-candle" id="c3">
+        <div class="big-flame" id="f3"><div class="flame-inner"></div></div>
+        <div class="smoke-puff" id="s3"></div>
+        <div class="big-candle-body" style="background:linear-gradient(180deg,#34d399,#a7f3d0)"></div>
+      </div>
+      <div class="big-candle" id="c4">
+        <div class="big-flame" id="f4"><div class="flame-inner"></div></div>
+        <div class="smoke-puff" id="s4"></div>
+        <div class="big-candle-body" style="background:linear-gradient(180deg,#fbbf24,#fde68a)"></div>
+      </div>
+      <div class="big-candle" id="c5">
+        <div class="big-flame" id="f5"><div class="flame-inner"></div></div>
+        <div class="smoke-puff" id="s5"></div>
+        <div class="big-candle-body" style="background:linear-gradient(180deg,#60a5fa,#bfdbfe)"></div>
+      </div>
+    </div>
+
+    <!-- Top tier -->
+    <div class="bc-top">
+      <div class="bc-top-frosting"></div>
+      <div class="bc-dots">• • • • •</div>
+    </div>
+
+    <!-- Middle tier with 21 -->
+    <div class="bc-mid">
+      <div class="bc-mid-frosting"></div>
+      <div class="bc-drips-mid">
+        <div class="bc-drip" style="height:20px;left:8%"></div>
+        <div class="bc-drip" style="height:14px;left:20%"></div>
+        <div class="bc-drip" style="height:24px;left:33%"></div>
+        <div class="bc-drip" style="height:12px;left:46%"></div>
+        <div class="bc-drip" style="height:22px;left:58%"></div>
+        <div class="bc-drip" style="height:16px;left:70%"></div>
+        <div class="bc-drip" style="height:20px;left:82%"></div>
+      </div>
+      <div class="bc-hearts">💜 💖 💜</div>
+    </div>
+
+    <!-- Bottom tier -->
+    <div class="bc-bot">
+      <div class="bc-bot-frosting"></div>
+      <div class="bc-drips-bot">
+        <div class="bc-drip" style="height:22px;left:5%"></div>
+        <div class="bc-drip" style="height:14px;left:14%"></div>
+        <div class="bc-drip" style="height:26px;left:23%"></div>
+        <div class="bc-drip" style="height:10px;left:33%"></div>
+        <div class="bc-drip" style="height:20px;left:42%"></div>
+        <div class="bc-drip" style="height:18px;left:51%"></div>
+        <div class="bc-drip" style="height:28px;left:60%"></div>
+        <div class="bc-drip" style="height:12px;left:70%"></div>
+        <div class="bc-drip" style="height:22px;left:79%"></div>
+        <div class="bc-drip" style="height:16px;left:88%"></div>
+      </div>
+      <div class="bc-bot-deco">🌸 ⭐ 🌸 ⭐ 🌸</div>
+    </div>
+
+    <!-- Plate -->
+    <div class="bc-plate"></div>
+  </div>
+
+  <div class="blow-hint" id="blowHint">Press the button & blow out the candles!</div>
+  <button class="btn blow-btn" id="blowBtn" onclick="blowCandles()">💨 BLOW!</button>
 </div>
 
 <!-- ══ PAGE 3: ARE YOU READY? ══ -->
@@ -574,6 +1175,51 @@ function popGift(el) {
   el.style.transform = 'scale(0.92)';
   setTimeout(() => { el.style.transform = ''; }, 200);
   startConfetti();
+}
+
+// ── BLOW CANDLES ──
+let blown = 0;
+function blowCandles() {
+  const btn = document.getElementById('blowBtn');
+  btn.disabled = true;
+  btn.textContent = '💨 Blowing...';
+  blown = 0;
+
+  // Wind sweep visual
+  const scene = document.getElementById('bigCakeScene');
+  const wind = document.createElement('div');
+  wind.className = 'wind-sweep';
+  scene.style.position = 'relative';
+  scene.appendChild(wind);
+  void wind.offsetWidth;
+  wind.classList.add('go');
+  setTimeout(() => wind.remove(), 700);
+
+  // Blow out each flame one by one with stagger
+  for (let i = 1; i <= 5; i++) {
+    setTimeout(() => {
+      const flame = document.getElementById('f' + i);
+      const smoke = document.getElementById('s' + i);
+      if (flame) flame.classList.add('blown');
+      if (smoke) smoke.classList.add('rising');
+      blown++;
+      if (blown === 5) {
+        // All candles out — show message then go to next page
+        const hint = document.getElementById('blowHint');
+        if (hint) {
+          hint.style.display = 'none';
+        }
+        // Show celebration message
+        const msg = document.createElement('div');
+        msg.className = 'all-blown-msg';
+        msg.textContent = '🎉 Wish Granted! ✨';
+        msg.style.display = 'block';
+        btn.parentNode.insertBefore(msg, btn);
+        btn.style.display = 'none';
+        setTimeout(() => goTo('p3'), 2200);
+      }
+    }, i * 140);
+  }
 }
 
 // Shake animation for how dare you
